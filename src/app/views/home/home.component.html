@@ -1,5 +1,35 @@
 
-    
+      
+      
+      <!-- ========================= SECTION MAIN ========================= -->
+      <section class="section-main bg padding-y">
+      <div class="container">
+      
+      <div class="row">
+          <aside class="col-md-3">
+              <nav class="card">
+                  <ul class="menu-category">
+                    <li class="has-submenu" *ngFor="let element of category; let i = index">
+                        <a href="#">{{element.name}}</a>
+
+                        <ul class="submenu">
+                            <li *ngFor="let ob of element.subCategory; let j = index">
+                                <a href="#">{{ob.name}}</a>
+                            </li>
+                        </ul>
+                     </li>
+                  </ul>
+              </nav>
+          </aside> <!-- col.// -->
+          <div class="col-md-9">
+              <article class="banner-wrap">
+                  <img src="assets/images/2.jpg" class="w-100 rounded">
+              </article>
+          </div> <!-- col.// -->
+      </div> <!-- row.// -->
+      </div> <!-- container //  -->
+      </section>
+      <!-- ========================= SECTION MAIN END// ========================= -->
     <!-- ========================= SECTION CONTENT ========================= -->
     <section class="section-content padding-y">
     <div class="container">
@@ -47,32 +77,11 @@
                 </a>
             </header>
             <div class="filter-content collapse show" id="collapse_2" style="">
-                <div class="card-body">
-                    <label class="custom-control custom-checkbox">
-                      <input type="checkbox" checked="" class="custom-control-input">
-                      <div class="custom-control-label">Mercedes  
-                          <b class="badge badge-pill badge-light float-right">120</b>  </div>
-                    </label>
-                    <label class="custom-control custom-checkbox">
-                      <input type="checkbox" checked="" class="custom-control-input">
-                      <div class="custom-control-label">Toyota 
-                          <b class="badge badge-pill badge-light float-right">15</b>  </div>
-                    </label>
-                    <label class="custom-control custom-checkbox">
-                      <input type="checkbox" checked="" class="custom-control-input">
-                      <div class="custom-control-label">Mitsubishi 
-                          <b class="badge badge-pill badge-light float-right">35</b> </div>
-                    </label>
-                    <label class="custom-control custom-checkbox">
-                      <input type="checkbox" checked="" class="custom-control-input">
-                      <div class="custom-control-label">Nissan 
-                          <b class="badge badge-pill badge-light float-right">89</b> </div>
-                    </label>
-                    <label class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input">
-                      <div class="custom-control-label">Honda 
-                          <b class="badge badge-pill badge-light float-right">30</b>  </div>
-                    </label>
+                <div class="card-body" *ngFor="let element of brand; let i = index">
+                    <div >
+                        <a href="#" style="color: black;">{{element.name}} 
+                        </a>
+                    </div>
         </div> <!-- card-body.// -->
             </div>
         </article> <!-- filter-group .// -->
@@ -186,17 +195,17 @@
     </header><!-- sect-heading -->
     
     
-    <article class="card card-product-list">
+    <article class="card card-product-list"  *ngFor="let element of product; let i = index">
         <div class="row no-gutters">
             <aside class="col-md-3">
                 <a href="#" class="img-wrap">
                     <span class="badge badge-danger"> NEW </span>
-                    <img src="assets/images/items/3.jpg">
+                    <img [src]="element.image">
                 </a>
             </aside> <!-- col.// -->
             <div class="col-md-6">
                 <div class="info-main">
-                    <a href="#" class="h5 title"> Great product name goes here  </a>
+                    <a href="#" class="h5 title"> {{element.name}}</a>
                     <div class="rating-wrap mb-3">
                         <ul class="rating-stars">
                             <li style="width:80%" class="stars-active"> 
@@ -213,7 +222,7 @@
                         <div class="label-rating">7/10</div>
                     </div> <!-- rating-wrap.// -->
                     
-                    <p> Take it as demo specs, ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam </p>
+                    <p> {{element.description}}</p>
                 </div> <!-- info-main.// -->
             </div> <!-- col.// -->
             <aside class="col-sm-3">
@@ -236,140 +245,9 @@
     </article> <!-- card-product .// -->
     
     
-    <article class="card card-product-list">
-        <div class="row no-gutters">
-            <aside class="col-md-3">
-                <a href="#" class="img-wrap"><img src="assets/images/items/4.jpg"></a>
-            </aside> <!-- col.// -->
-            <div class="col-md-6">
-                <div class="info-main">
-                    <a href="#" class="h5 title"> Great product name goes here  </a>
-                    <div class="rating-wrap mb-3">
-                        <ul class="rating-stars">
-                            <li style="width:80%" class="stars-active"> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
-                            </li>
-                            <li>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
-                            </li>
-                        </ul>
-                        <div class="label-rating">7/10</div>
-                    </div> <!-- rating-wrap.// -->
-                    
-                    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam </p>
-                </div> <!-- info-main.// -->
-            </div> <!-- col.// -->
-            <aside class="col-sm-3">
-                <div class="info-aside">
-                    <div class="price-wrap">
-                        <span class="price h5"> $56 </span>	
-                        <del class="price-old"> $85</del>
-                    </div> <!-- info-price-detail // -->
-                    <p class="text-success">Free shipping</p>
-                    <br>
-                    <p>
-                        <a href="#" class="btn btn-primary btn-block"> Details </a>
-                        <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-                            <span class="text">Add to wishlist</span></a>
-                    </p>
-                </div> <!-- info-aside.// -->
-            </aside> <!-- col.// -->
-        </div> <!-- row.// -->
-    </article> <!-- card-product .// -->
     
-    <article class="card card-product-list">
-        <div class="row no-gutters">
-            <aside class="col-md-3">
-                <a href="#" class="img-wrap"><img src="assets/images/items/5.jpg"></a>
-            </aside> <!-- col.// -->
-            <div class="col-md-6">
-                <div class="info-main">
-                    <a href="#" class="h5 title"> Great product name goes here  </a>
-                    <div class="rating-wrap mb-3">
-                        <ul class="rating-stars">
-                            <li style="width:80%" class="stars-active"> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
-                            </li>
-                            <li>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
-                            </li>
-                        </ul>
-                        <div class="label-rating">7/10</div>
-                    </div> <!-- rating-wrap.// -->
-                    
-                    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam </p>
-                </div> <!-- info-main.// -->
-            </div> <!-- col.// -->
-            <aside class="col-sm-3">
-                <div class="info-aside">
-                    <div class="price-wrap">
-                        <span class="price h5"> $56.00 </span>	
-                    </div> <!-- info-price-detail // -->
-                    <p class="text-success">Free shipping</p>
-                    <br>
-                    <p>
-                        <a href="#" class="btn btn-primary btn-block"> Details </a>
-                        <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-                            <span class="text">Add to wishlist</span>
-                        </a>
-                    </p>
-                </div> <!-- info-aside.// -->
-            </aside> <!-- col.// -->
-        </div> <!-- row.// -->
-    </article> <!-- card-product .// -->
     
-    <article class="card card-product-list">
-        <div class="row no-gutters">
-            <aside class="col-md-3">
-                <a href="#" class="img-wrap"><img src="assets/images/items/6.jpg"></a>
-            </aside> <!-- col.// -->
-            <div class="col-md-6">
-                <div class="info-main">
-                    <a href="#" class="h5 title"> Product name can be here  </a>
-                    <div class="rating-wrap mb-3">
-                        <ul class="rating-stars">
-                            <li style="width:80%" class="stars-active"> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
-                            </li>
-                            <li>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
-                            </li>
-                        </ul>
-                        <div class="label-rating">7/10</div>
-                    </div> <!-- rating-wrap.// -->
-                    
-                    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Lorem ipsum dolor sit amet, consectetuer adipiscing elit, Ut wisi enim ad minim veniam </p>
-                </div> <!-- info-main.// -->
-            </div> <!-- col.// -->
-            <aside class="col-sm-3">
-                <div class="info-aside">
-                    <div class="price-wrap">
-                        <span class="price h5"> $62 </span>	
-                    </div> <!-- info-price-detail // -->
-                    <p class="text-success">Free shipping</p>
-                    <br>
-                    <p>
-                        <a href="#" class="btn btn-primary btn-block"> Details </a>
-                        <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i> 
-                            <span class="text">Add to wishlist</span> 
-                        </a>
-                    </p>
-                </div> <!-- info-aside.// -->
-            </aside> <!-- col.// -->
-        </div> <!-- row.// -->
-    </article> <!-- card-product .// -->
+    
     
     
     

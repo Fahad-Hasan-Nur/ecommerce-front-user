@@ -1,3 +1,4 @@
+import { CartModule } from './views/cart/cart.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { DefaultLayoutComponent } from './container/default-layout/default-layout.component';
@@ -24,6 +25,10 @@ export const routes: Routes = [
        {
         path: URL_NAME.CHECKOUT,
         loadChildren: () => import('./views/checkout/checkout.module').then(m => m.CheckoutModule)
+      },
+      {
+        path: URL_NAME.CART,
+        loadChildren: () => import('./views/cart/cart.module').then(m => m.CartModule)
       },
       // {
       //   path: URL_NAME.SUB_CATEGORY,

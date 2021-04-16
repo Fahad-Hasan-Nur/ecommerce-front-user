@@ -48,6 +48,8 @@ export const ROLES = {
   export const URL = {
     CHECKOUT:'/checkout',
     HOME:'/home',
+    CART:'/cart',
+
 
     // PROFILE:'/profile',
     // DEALER_COMPLETED_REQUISITION:'/dealer/completed',
@@ -86,6 +88,8 @@ export const ROLES = {
   export const URL_NAME = {
     CHECKOUT:'checkout',
     HOME:'home',
+    CART:'cart',
+
 
 //     PROFILE:'profile',
 //     ACCOUNTS:'accounts',
