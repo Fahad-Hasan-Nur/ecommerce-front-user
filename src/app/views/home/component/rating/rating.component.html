@@ -1,0 +1,10 @@
+<h2 style="text-align: center;color: white;">Rate Now:</h2>
+<mat-card style="height:100px;" mat-dialog-content>
+  <mat-card-content style="padding-top: 30px;">
+    <ngb-rating  [max]="5" [(rate)]="rating" [readonly]="false"></ngb-rating>
+  </mat-card-content>
+</mat-card>
+<button class="btn btn-danger" style="float:right; margin: 20px 5px 5px 5px;"
+      (click)="close()">{{'Not Now'}}</button>
+      <button class="btn btn-success" style="float:right; margin: 20px 5px 5px 5px;"
+      (click)="submit()">{{'Submit'}}</button>

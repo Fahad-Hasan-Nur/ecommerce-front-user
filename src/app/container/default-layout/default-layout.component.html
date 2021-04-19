@@ -28,9 +28,12 @@
                     <a href="#" class="icon icon-sm rounded-circle border"><i class="fa fa-user"></i></a>
                     <div class="text">
                         <span class="text-muted">Welcome!</span>
-                        <div> 
+                        <div [hidden]="loggedin"> 
                             <a (click)="login()">Sign in</a> |  
                             <a (click)="register()"> Register</a>
+                        </div>
+                        <div [hidden]="!loggedin">
+                          <a (click)="logOut()"> Log Out</a>
                         </div>
                     </div>
                 </div>

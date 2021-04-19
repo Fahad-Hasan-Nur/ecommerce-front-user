@@ -1,17 +1,25 @@
-export class User {
-  username?: string;
+import { Injectable } from "@angular/core";
+
+@Injectable()
+export class User{
+  id?: string;
   name?: string;
-  nameEn?: string;
-  orgName?: string;
-  departmentName?: string;
-  designationName?: string;
-  access_token?: string;
-  employeeId?: string;
-  officeOid?: string;
+  email?: string;
+  password?: string;
+  role?: string;
+  imageId?: string;
+  nidId?: string;
+  tinId?: string;
+  imageName?: string;
+  birthDate?: Date;
+  gender?: string;
+  phoneNumber ?: string;
   exp?: number;
-  oid?: string;
-  employeeOfficeId?: string;
-  projectId?: string;
-  roles?: Set<string>;
-  privilege?:Set<string>
+  createdBy?: string;
+  updatedBy?: string;
+  verified?: boolean;
+  permanentAddress?: string;
+  presentAddress?: string;
+  shopAddress?: string;
+
 }

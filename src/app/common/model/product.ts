@@ -1,5 +1,6 @@
 
 import { Injectable } from "@angular/core";
+import { Variation } from "./variation";
 
 @Injectable()
 export class Product {
@@ -19,5 +20,6 @@ export class Product {
   public color?: string[];
   public image?: any;
   public description?:string;
-
+  public variation?: Variation[];
+  public rating?:number;
 }

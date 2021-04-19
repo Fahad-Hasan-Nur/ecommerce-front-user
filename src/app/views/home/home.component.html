@@ -11,10 +11,10 @@
                   <ul class="menu-category">
                     <li class="has-submenu" *ngFor="let element of category; let i = index">
                         <a href="#">{{element.name}}</a>
-
+                
                         <ul class="submenu">
                             <li *ngFor="let ob of element.subCategory; let j = index">
-                                <a href="#">{{ob.name}}</a>
+                                <a (click)="getProductBySubCategory(ob.id)">{{ob.name}}</a>
                             </li>
                         </ul>
                      </li>
@@ -38,37 +38,7 @@
         <aside class="col-md-3">
             
     <div class="card">
-        <article class="filter-group">
-            <header class="card-header">
-                <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
-                    <i class="icon-control fa fa-chevron-down"></i>
-                    <h6 class="title">Product type</h6>
-                </a>
-            </header>
-            <div class="filter-content collapse show" id="collapse_1" style="">
-                <div class="card-body">
-                    <form class="pb-3">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search">
-                      <div class="input-group-append">
-                        <button class="btn btn-light" type="button"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                    </form>
-                    
-                    <ul class="list-menu">
-                    <li><a href="#">People  </a></li>
-                    <li><a href="#">Watches </a></li>
-                    <li><a href="#">Cinema  </a></li>
-                    <li><a href="#">Clothes  </a></li>
-                    <li><a href="#">Home items </a></li>
-                    <li><a href="#">Animals</a></li>
-                    <li><a href="#">People </a></li>
-                    </ul>
-    
-                </div> <!-- card-body.// -->
-            </div>
-        </article> <!-- filter-group  .// -->
+        
         <article class="filter-group">
             <header class="card-header">
                 <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
@@ -79,7 +49,7 @@
             <div class="filter-content collapse show" id="collapse_2" style="">
                 <div class="card-body" *ngFor="let element of brand; let i = index">
                     <div >
-                        <a href="#" style="color: black;">{{element.name}} 
+                        <a (click)="getByBrand(element.id)" style="color: black;">{{element.name}} 
                         </a>
                     </div>
         </div> <!-- card-body.// -->
@@ -178,7 +148,7 @@
     
     <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
-                <span class="mr-md-auto">32 Items found </span>
+                <span class="mr-md-auto">{{totalProduct}} Items found </span>
                 <select class="mr-2 form-control">
                     <option>Latest items</option>
                     <option>Trending</option>
@@ -206,30 +176,28 @@
             <div class="col-md-6">
                 <div class="info-main">
                     <a href="#" class="h5 title"> {{element.name}}</a>
-                    <div class="rating-wrap mb-3">
+                    <h1 class="text-primary">
+                      </h1>
+                    <div class="rating-wrap mb-3" (click)="rating(element.id)"> 
                         <ul class="rating-stars">
-                            <li style="width:80%" class="stars-active"> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
-                            </li>
                             <li>
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> <i class="fa fa-star"></i> 
-                                <i class="fa fa-star"></i> 
+                                <i class="fa fa-star" style="color: blueviolet;" *ngFor="let item of [].constructor(element.rating); let i = index"></i>
+                                <i class="fa fa-star" *ngFor="let item of [].constructor(5-element.rating); let j = index"></i>
                             </li>
                         </ul>
-                        <div class="label-rating">7/10</div>
-                    </div> <!-- rating-wrap.// -->
-                    
+                        <div class="label-rating">{{element.rating}}/5</div>
+                    </div> 
+
                     <p> {{element.description}}</p>
                 </div> <!-- info-main.// -->
             </div> <!-- col.// -->
             <aside class="col-sm-3">
                 <div class="info-aside">
-                    <div class="price-wrap">
-                        <span class="price h5"> $140 </span>	
-                        <del class="price-old"> $198</del>
+                    <div class="price-wrap" *ngFor="let ob of element.variation; let k = index">
+                        <span class="price h5">  ৳{{ob.price-ob.price*ob.discount/100}}</span>	
+                        <del class="price-old"> ৳{{ob.price}}</del>
+                        <span>   {{ob.name}} </span>
+
                     </div> <!-- info-price-detail // -->
                     <p class="text-success">Free shipping</p>
                     <br>

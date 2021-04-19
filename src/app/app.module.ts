@@ -1,3 +1,4 @@
+import { User } from './common/model/user';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import jwtDecode from 'jwt-decode';
 
 
 
@@ -31,11 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     AngularMaterialModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbModule,
+    AngularMaterialModule,
   ],
   entryComponents: [
     LoginComponent,RegisterComponent],
-  providers: [],
+  providers: [User],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,38 @@
-<p>register works!</p>
+   
+<section id="content">
+    <div class="overlay"
+    [hidden]="!loading">
+    <img src="assets/images/gif/loader_colored.gif" class="spinner" style="height: 200px; width: 200px">
+    </div> 
+      <form #NgModel='ngForm' [hidden]="loading">
+        
+        <h1>Registration Form</h1>
+        <div>
+          <input type="text" placeholder="Name" required="true" id="name" #name="ngModel" name="name"
+            [(ngModel)]="user.name" />
+        </div>
+
+        <div>
+          <input type="text" placeholder="Email" required="true" id="username" #email="ngModel" name="email" email
+            [(ngModel)]="user.email" />
+        </div>
+
+        <div>
+          <input type="text" placeholder="Phone Number" required="true" id="phone" #phoneNumber="ngModel"
+            name="phoneNumber" [(ngModel)]="user.phoneNumber" />
+        </div>
+
+        <div>
+          <input type="password" placeholder="Password" required="true" id="password" #password="ngModel"
+            name="password" [(ngModel)]="user.password" />
+        </div>
+        <div>
+            <button mat-raised-button [disabled]="!NgModel.valid" style="color: rgb(80, 175, 238);"
+            (click)="register()">{{'Register'}}</button>
+          <a >Lost your password?</a>
+          <a (click)="login()">Go to Login</a>
+        </div>
+      </form>
+     
+    </section>
+  

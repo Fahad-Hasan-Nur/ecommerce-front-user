@@ -1,6 +1,7 @@
 export const success_message = {
   TRANSACTION_NOT_PROCESSED:'You can pay your due after your transaction is processed..',
   VERIFIED_DEALER_SUCCESS:'Verified Dealer Successfully...',
+  ACCOUNT_ACTIVATE_SUCCESS:'Activated account Successfully...',
   VERIFIED_DEALER_PROCESSING:' Dealer Verification Under Processing...',
   REJECT_DEALER_SUCCESS:'Rejected Dealer Successfully...',
   REJECT_DEALER_PROCESSING:'Dealer Rejection is Under Processing...',
@@ -14,7 +15,14 @@ export const success_message = {
   FAILD: 'Failed to Save',
   UPDATED_SUCCESSFULLY: 'Updated Successfully',
   DELETED_SUCCESSFULLY: 'Deleted Successfully',
-  FAILED_UPLOAD_IMAGE:'Failed to Upload Image.'
+  FAILED_UPLOAD_IMAGE:'Failed to Upload Image.',
+  RATING_SUCCESS:'Submitted Rating Successfully.',
+  RATING_UPDATE_SUCCESS:'Updated Rating Successfully.',
+  RATING_FAIL:'Failed to add Rating.',
+  RATING_UPDATE_FAIL:'Failed to update Rating.',
+
+  LOGIN_SUCCES: "Logged in Successfully.",
+  ERROR_RATING:'You must log in to rate Products.'
 };
 
 export const error_message = {
