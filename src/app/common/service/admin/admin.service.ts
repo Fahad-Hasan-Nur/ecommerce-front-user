@@ -1,3 +1,4 @@
+import { TOKEN } from './../../constants/storage-variables.constant';
 import { ADMIN_API } from './../../constants/api.constants';
 import { User } from './../../model/user';
 
@@ -33,6 +34,7 @@ export class AdminService {
   */
   public getAdminInfo(email: any): Observable<any> {
     // @ts-ignore
+    console.log(this.storage.read(AUTH.TOKEN))
     return this._http.get(ADMIN_API.GET_ADMIN_BY_EMAIL + email, { headers: this.reqHeader });
   }
   // /**

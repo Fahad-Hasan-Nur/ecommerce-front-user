@@ -13,13 +13,14 @@ import { RegisterComponent } from '../register/register.component';
 import { TOKEN } from '../../constants/storage-variables.constant';
 import { URL } from '../../constants/nav.constants';
 import { AUTH } from '../../constants/global-variables.constant';
+import { AuthGuard } from '../../service/auth/auth.guard';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements  OnInit {
+export class LoginComponent implements OnInit {
   public loading: boolean;
 
 
@@ -33,7 +34,7 @@ export class LoginComponent implements  OnInit {
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<LoginComponent>,
     private loginService: LoginService,
-    private auth:AuthService
+    private auth: AuthGuard
   ) { }
 
   public ngOnInit() {
@@ -43,26 +44,42 @@ export class LoginComponent implements  OnInit {
     this.stateService.setAuth(user);
   }
 
-
-
   public login() {
     this.loading = true;
-
     this.loginService.login(this.stateService.getAuth()).subscribe(
       (res) => {
-        this.loading=false;
-        this.auth.saveToken(res.jwt);
-        this.toastService.openSnackBar(success_message.LOGIN_SUCCES, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-        this.dialogRef.close();
+        this.storage.save(AUTH.TOKEN, res.jwt);
+        this.loading = false;
+        if(this.storage.read(AUTH.TOKEN)!=null){
+          console.log()
+          this.getUser();
+        }
+        else{
+          this.toastService.openSnackBar(success_message.LOGIN_FAIL, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
+        }
       },
       (err) => {
         console.log(err);
-        this.loading=false;
+        this.loading = false;
         this.toastService.openSnackBar(err.error.text, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-
       });
 
   }
+  getUser() {
+    this.adminService.getAdminInfo(this.user.email).subscribe(
+      res => {
+        this.user = res;
+        this.stateService.setUser(this.user);
+        this.storage.save(AUTH.CURRENT_USER, this.user);
+        this.storage.save(AUTH.ROLES, this.user.role);
+        this.toastService.openSnackBar(success_message.LOGIN_SUCCES, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+        window.location.replace(window.location.href.replace(URL.HOME, URL.HOME));
+      },
+      err => {
+        console.log(err);
+      })
+  }
+
   register() {
     const dialogConfig = new MatDialogConfig();
     this.dialogRef.close();

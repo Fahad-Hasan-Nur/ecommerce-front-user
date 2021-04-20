@@ -23,7 +23,7 @@ export class DefaultLayoutComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    if(this.storage.read(AUTH.TOKEN)!=null){
+    if(this.storage.read(AUTH.CURRENT_USER)!=null){
       this.loggedin=true;
     }
   }

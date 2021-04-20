@@ -1,11 +1,8 @@
 import { DecodeToken } from './../../model/decode-token';
-import { TOKEN } from './../../constants/storage-variables.constant';
 import { User } from './../../model/user';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable } from 'rxjs';
 import { StorageService } from '../storage/storage.service';
 import { Router } from '@angular/router';
-import {environment} from "../../../../environments/environment";
 import { StateService } from '../state/state.service';
 import { AdminService } from '../admin/admin.service';
 import { AUTH } from '../../constants/global-variables.constant';
@@ -59,7 +56,6 @@ export class AuthService {
       err => {
        console.log(err);
        resolved(false);
-       this.router.navigate(['/unauthorized']);
       })
    })
 

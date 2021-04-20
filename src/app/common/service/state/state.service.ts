@@ -1,7 +1,9 @@
+import { ProductViewComponent } from './../../../views/home/component/product-view/product-view.component';
 
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Auth } from '../../model/auth';
+import { Product } from '../../model/product';
 
 import { User } from '../../model/user';
 
@@ -12,6 +14,7 @@ import { User } from '../../model/user';
 export class StateService {
   private currentUserState!: BehaviorSubject<User>;
   private currentAuthState!: BehaviorSubject<Auth>;
+  private currentProductState!: BehaviorSubject<Product>;
 
   /**
    *
@@ -25,9 +28,20 @@ export class StateService {
     });
     await this.currentUserState.next(admin);
   }
-  
-   
 
+   /**
+   *
+   * set current product
+   *
+   * @param product
+   */
+    public async setProduct(product: Product) {
+      await new Promise((resolve,rejects) => {
+        if (this.currentProductState === undefined) this.currentProductState = new BehaviorSubject<Product>(product);
+      });
+      await this.currentProductState.next(product);
+    }
+  
   /**
    *
    * get current Admin.
@@ -37,9 +51,17 @@ export class StateService {
   public getUser(): User{
     return this.currentUserState.value;
   }
- 
-  
 
+  /**
+   *
+   * get current product.
+   *
+   * @return currentProductState
+   */
+   public getProduct(): Product{
+    return this.currentProductState.value;
+  }
+ 
   /**
    *
    * set current auth.
@@ -54,7 +76,6 @@ export class StateService {
     await this.currentAuthState.next(auth);
   }
 
- 
  /**
    * get current auth.
    *
@@ -62,7 +83,6 @@ export class StateService {
    */
   public getAuth(): Auth{
     return this.currentAuthState.value;
-
 
 }
 }

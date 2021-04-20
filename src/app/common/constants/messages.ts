@@ -20,8 +20,8 @@ export const success_message = {
   RATING_UPDATE_SUCCESS:'Updated Rating Successfully.',
   RATING_FAIL:'Failed to add Rating.',
   RATING_UPDATE_FAIL:'Failed to update Rating.',
-
   LOGIN_SUCCES: "Logged in Successfully.",
+  LOGIN_FAIL: "Failed to log in.",
   ERROR_RATING:'You must log in to rate Products.'
 };
 

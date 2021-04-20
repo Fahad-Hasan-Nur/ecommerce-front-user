@@ -47,6 +47,14 @@ export class ProductService {
  public getProductByBrandId(data): Observable<Product[]> {
   return this._http.get<Product[]>(PRODUCT_API.GET_PRODUCT_BY_BRAND_ID + data);
 }
+
+/**
+   * get list of  product by name .
+   *
+   */
+ public getProductByName(name): Observable<Product[]> {
+  return this._http.get<Product[]>(PRODUCT_API.GET_PRODUCT_BY_NAME + name);
+}
   /**
    * Returns list of variation.
    *

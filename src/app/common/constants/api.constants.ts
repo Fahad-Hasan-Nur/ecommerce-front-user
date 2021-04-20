@@ -21,6 +21,7 @@ export const PRODUCT_API = {
     ADD_VARIATION: PRODUCT_SERVICE+'addVariation/',
     GET_VARIATION_BY_PRODUCT_ID: PRODUCT_SERVICE + 'getAllVariation/',
     UPDATE_VARIATION: PRODUCT_SERVICE+'updateVariation/',
+    GET_PRODUCT_BY_NAME: PRODUCT_SERVICE+ 'getAllByfilteredName/',
 };
 
 const RATING_SERVICE = SERVICE_API + 'api/rating/';

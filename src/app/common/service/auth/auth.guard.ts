@@ -45,13 +45,13 @@ export class AuthGuard implements CanActivate {
 
 
     } else if (next.queryParams[AUTH.TOKEN] === undefined) {
-      return this.router.createUrlTree(['/page-not-found']);
+      return this.router.createUrlTree(['/unauthorized']);
     }else{
-      return this.router.createUrlTree(['/page-not-found']);
+      return this.router.createUrlTree(['/unauthorized']);
     }
   }
 
-  private async saveUserToken(token: string) {
+  public async saveUserToken(token: string) {
     return (await this.authService.saveToken(token) && await this.clearUrl())?true:this.router.navigate(['/unauthorized']);
   }
 

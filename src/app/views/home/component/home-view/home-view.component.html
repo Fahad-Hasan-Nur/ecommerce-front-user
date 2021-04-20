@@ -1,0 +1,254 @@
+<!-- ========================= SECTION MAIN ========================= -->
+<section class="section-main bg padding-y">
+  <div class="container">
+
+    <div class="row">
+      <aside class="col-md-3">
+        <nav class="card">
+          <ul class="menu-category">
+            <li class="has-submenu" *ngFor="let element of category; let i = index">
+              <a href="#">{{element.name}}</a>
+
+              <ul class="submenu">
+                <li *ngFor="let ob of element.subCategory; let j = index">
+                  <a (click)="getProductBySubCategory(ob.id)">{{ob.name}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside> <!-- col.// -->
+      <div class="col-md-9">
+        <article class="banner-wrap">
+          <img src="assets/images/2.jpg" class="w-100 rounded">
+        </article>
+      </div> <!-- col.// -->
+    </div> <!-- row.// -->
+  </div> <!-- container //  -->
+
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+  <div class="container">
+
+    <div class="row">
+      <aside class="col-md-3">
+
+        <div class="card">
+
+          <article class="filter-group">
+            <header class="card-header">
+              <a href="#" data-toggle="collapse" data-target="#collapse_2" aria-expanded="true" class="">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Brands </h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_2" style="">
+              <div class="card-body" *ngFor="let element of brand; let i = index">
+                <div>
+                  <a (click)="getByBrand(element.id)" style="color: black;">{{element.name}}
+                  </a>
+                </div>
+              </div> <!-- card-body.// -->
+            </div>
+          </article> <!-- filter-group .// -->
+          <article class="filter-group">
+            <header class="card-header">
+              <a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Price range </h6>
+              </a>
+            </header>
+            <div class="filter-content collapse show" id="collapse_3" style="">
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Min</label>
+                    <input class="form-control" placeholder="৳0" type="number" [(ngModel)]="minPrice">
+                  </div>
+                  <div class="form-group text-right col-md-6">
+                    <label>Max</label>
+                    <input class="form-control" placeholder="৳1,0000" type="number" [(ngModel)]="maxPrice">
+                  </div>
+                </div> <!-- form-row.// -->
+                <button class="btn btn-block btn-primary" (click)="filterByPrice()">Apply</button>
+              </div><!-- card-body.// -->
+            </div>
+          </article> <!-- filter-group .// -->
+        </div> <!-- card.// -->
+
+      </aside> <!-- col.// -->
+      <main class="col-md-9">
+        
+
+        <header class="border-bottom mb-4 pb-3">
+          <div class="form-inline">
+            <span class="mr-md-auto">{{totalProduct}} Items found </span>
+            <div class="col-lg-6 col-sm-12">
+              <form>
+                <div class="input-group w-100">
+                  <input type="text" class="form-control" placeholder="Search" (keyup)="applyFilter($event.target)">
+                  <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form> <!-- search-wrap .end// -->
+            </div> <!-- col.// -->
+          </div>
+        </header><!-- sect-heading -->
+
+
+        <article class="card card-product-list" *ngFor="let element of product; let i = index">
+          <div class="row no-gutters">
+            <aside class="col-md-3">
+              <a href="#" class="img-wrap">
+                <span class="badge badge-danger"> NEW </span>
+                <img [src]="element.image">
+              </a>
+            </aside> <!-- col.// -->
+            <div class="col-md-6">
+              <div class="info-main">
+                <a href="#" class="h5 title"> {{element.name}}</a>
+                <h1 class="text-primary">
+                </h1>
+                <div class="rating-wrap mb-3" (click)="rating(element.id)">
+                  <ul class="rating-stars">
+                    <li>
+                      <i class="fa fa-star" style="color: blueviolet;"
+                        *ngFor="let item of [].constructor(element.rating); let i = index"></i>
+                      <i class="fa fa-star" *ngFor="let item of [].constructor(5-element.rating); let j = index"></i>
+                    </li>
+                  </ul>
+                  <div class="label-rating">{{element.rating}}/5</div>
+                </div>
+
+                <p> {{element.description}}</p>
+              </div> <!-- info-main.// -->
+            </div> <!-- col.// -->
+            <aside class="col-sm-3">
+              <div class="info-aside">
+                <div class="price-wrap" *ngFor="let ob of element.variation; let k = index">
+                  <span class="price h5"> ৳{{ob.price-ob.price*ob.discount/100}}</span>
+                  <del class="price-old"> ৳{{ob.price}}</del>
+                  <span> {{ob.name}} </span>
+
+                </div> <!-- info-price-detail // -->
+                <p class="text-success">Free shipping</p>
+                <br>
+                <p>
+                  <a (click)="viewProduct(element)" class="btn btn-primary btn-block"> Details </a>
+                  <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
+                    <span class="text">Add to wishlist</span>
+                  </a>
+                </p>
+              </div> <!-- info-aside.// -->
+            </aside> <!-- col.// -->
+          </div> <!-- row.// -->
+        </article> <!-- card-product .// -->
+
+        <nav aria-label="Page navigation sample">
+          <ul class="pagination">
+            <li class="page-item "><a class="page-link" [hidden]="!(currentPage>1)"
+                (click)="getPage((currentPage-2)*5)">Previous</a></li>
+            <li class="page-item " *ngFor="let pageNumber of [].constructor(totalPage); let i = index"><a
+                class="page-link" (click)="getPage(i*5)">{{i+1}}</a></li>
+            <li class="page-item"><a class="page-link" [hidden]="(currentPage==totalPage)"
+                (click)="getPage(currentPage*5)">Next</a></li>
+          </ul>
+        </nav>
+        <section class="section-name padding-y-sm">
+            <div class="container">
+  
+              <header class="section-heading">
+                <h3 class="section-title">Recommended For You</h3>
+              </header><!-- sect-heading -->
+  
+  
+              <div class="row">
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/1.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Just another product name</a>
+                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/2.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Some item name here</a>
+                      <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/3.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Great product name here</a>
+                      <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/4.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Just another product name</a>
+                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/5.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Just another product name</a>
+                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/6.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Some item name here</a>
+                      <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/7.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Great product name here</a>
+                      <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+                <div class="col-md-3">
+                  <div href="#" class="card card-product-grid">
+                    <a href="#" class="img-wrap"> <img src="assets/images/items/9.jpg"> </a>
+                    <figcaption class="info-wrap">
+                      <a href="#" class="title">Just another product name</a>
+                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
+                    </figcaption>
+                  </div>
+                </div> <!-- col.// -->
+              </div> <!-- row.// -->
+  
+            </div><!-- container // -->
+          </section>
+
+      </main> <!-- col.// -->
+
+    </div>
+
+  </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

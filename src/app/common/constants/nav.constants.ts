@@ -11,6 +11,8 @@ export const ROLES = {
   export const MENU_NAME = {
       HOME:'Home',
       CHECKOUT:'Checkout',
+      PRODUCTVIEW:'Product View'
+
     // PROFILE:'Profile',
     // PRODUCT_ADD:'Add Product',
     // PRODUCT_LIST: 'Product List',
@@ -49,6 +51,8 @@ export const ROLES = {
     CHECKOUT:'/checkout',
     HOME:'/home',
     CART:'/cart',
+    PRODUCTVIEW:'/home/product-view'
+
 
 
     // PROFILE:'/profile',
@@ -89,6 +93,7 @@ export const ROLES = {
     CHECKOUT:'checkout',
     HOME:'home',
     CART:'cart',
+    PRODUCTVIEW:'product-view'
 
 
 //     PROFILE:'profile',

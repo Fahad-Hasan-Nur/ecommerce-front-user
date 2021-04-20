@@ -9,11 +9,14 @@ import { CommonModule } from '@angular/common';
 import { RatingComponent } from './component/rating/rating.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Rating } from 'src/app/common/model/rating';
+import { ProductViewComponent } from './component/product-view/product-view.component';
+import { HomeViewComponent } from './component/home-view/home-view.component';
+import { Product } from 'src/app/common/model/product';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, RatingComponent],
+  declarations: [HomeComponent, RatingComponent, ProductViewComponent, HomeViewComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -23,7 +26,7 @@ import { Rating } from 'src/app/common/model/rating';
     AngularMaterialModule,
     ReactiveFormsModule,
   ],
-  providers:[Category,Rating],
+  providers:[Category,Rating,Product],
   entryComponents:[RatingComponent]
 })
 export class HomeModule { 
