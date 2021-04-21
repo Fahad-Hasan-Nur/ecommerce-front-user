@@ -24,13 +24,14 @@ import { StorageService } from 'src/app/common/service/storage/storage.service';
 import { ToastService } from 'src/app/common/service/toast/toast.service';
 import { RatingComponent } from '../rating/rating.component';
 import { Subscription } from 'rxjs';
+import { MakeOrderComponent } from '../make-order/make-order.component';
 
 @Component({
   selector: 'app-home-view',
   templateUrl: './home-view.component.html',
   styleUrls: ['./home-view.component.scss']
 })
-export class HomeViewComponent implements OnInit, OnDestroy{
+export class HomeViewComponent implements OnInit{
 
   public totalProduct: number = 0;
   public category: Category[] = [];
@@ -49,9 +50,7 @@ export class HomeViewComponent implements OnInit, OnDestroy{
   public name:string;
   public totalPage:number;
   public currentPage: number=1;
-  private message:string;
-  private subscription: Subscription;
-  @Output() nameEmitter = new EventEmitter < string > (); 
+ 
 
   constructor(private categoryService: CategoryService,
     private subCategoryService: SubCategoryService,
@@ -75,9 +74,6 @@ export class HomeViewComponent implements OnInit, OnDestroy{
     }
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
   private activateUser(token: string) {
     this.adminService.activateUser(token).subscribe
       (
@@ -270,7 +266,22 @@ export class HomeViewComponent implements OnInit, OnDestroy{
   }
   viewProduct(data:Product){
     this.storage.save(AUTH.PRODUCT,data);
-    window.location.replace(window.location.href.replace(URL.HOME, URL.PRODUCTVIEW));
+    window.location.replace(window.location.href.replace(URL.HOME, URL.PRODUCT_VIEW));
+  }
+
+  addTocart(data:Product){
+    if (this.storage.read(AUTH.TOKEN) == null) {
+      this.toastService.openSnackBar(success_message.ERROR_RATING, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
+      this.dialog.open(LoginComponent);
+    } else {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      dialogConfig.data = {
+        id: data
+      };
+      this.dialog.open(MakeOrderComponent, dialogConfig);
+    }
   }
 }
 

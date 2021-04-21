@@ -51,7 +51,7 @@ export const ROLES = {
     CHECKOUT:'/checkout',
     HOME:'/home',
     CART:'/cart',
-    PRODUCTVIEW:'/home/product-view'
+    PRODUCT_VIEW:'/home/product-view'
 
 
 

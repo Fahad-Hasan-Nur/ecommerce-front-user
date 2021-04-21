@@ -3,8 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PRODUCT_API } from '../../constants/api.constants';
+import { AUTH } from '../../constants/global-variables.constant';
 import { Product } from '../../model/product';
 import { Variation } from '../../model/variation';
+import { StorageService } from '../storage/storage.service';
 
 
 @Injectable({
@@ -12,8 +14,13 @@ import { Variation } from '../../model/variation';
 })
 export class ProductService {
  
-
-  constructor(private _http: HttpClient) { }
+  private  reqHeader= new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + this.storage.read(AUTH.TOKEN)
+  });
+  
+  constructor(private _http: HttpClient,
+    private storage: StorageService) { }
 
     /**
    * Returns list of products.
@@ -62,6 +69,15 @@ export class ProductService {
    */
    public getVariations(id): Observable<any>{
     return this._http.get(PRODUCT_API.GET_VARIATION_BY_PRODUCT_ID+id);
+  }
+
+  /**
+   * Returns   variation.
+   *
+   * @returns variation 
+   */
+   public getVariationById(id): Observable<any>{
+    return this._http.get(PRODUCT_API.GET_VARIATION_BY_ID+id,{ headers: this.reqHeader });
   }
 
 }

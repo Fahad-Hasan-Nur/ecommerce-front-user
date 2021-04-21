@@ -1,0 +1,75 @@
+<section class="section-content padding-y bg" style="min-width: 600px;">
+  <div class="container">
+
+    <article class="card" style="min-width: 600px;">
+      <div class="card-body">
+        <div class="row">
+          <main class="col-md-6">
+            <article style="min-width: 400px;">
+              <h1 style="color: black;">{{product.name}}</h1>
+              <h4 style="color: black;"> from {{product.brandName}}</h4>
+              <div>
+                <div class="rating-wrap mb-3">
+                  <ul class="rating-stars">
+                    <li>
+                      <i class="fa fa-star" style="color: blueviolet;"
+                        *ngFor="let item of [].constructor(product.rating); let i = index"></i>
+                      <i class="fa fa-star" *ngFor="let item of [].constructor(5-product.rating); let j = index"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <hr>
+              <div class="form-group" style="min-width: fit-content;">
+                <label class="text-muted">Select Size:</label>
+                <div *ngFor="let ob of product.variation; let k = index">
+                  <label class="js-check btn btn-check active mr-1">
+                        <mat-radio-button name="variation" (click)="selectVariation(ob)" style="color: black;" >{{ob.name}}</mat-radio-button>
+                  </label>
+                  <span>
+                    <span class="price h5"> ৳{{ob.price-ob.price*ob.discount/100}}</span>
+                    <del class="price-old"> ৳{{ob.price}}</del>
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="text-muted">Enter Quantity:</label>
+                <div>
+                    <label class="text-muted">(Available quantity:{{avaibaleQuantity}})</label>
+                </div>
+                <div >
+                    <input type="number" [(ngModel)]="selectedQuantity">
+                </div>
+              </div>
+
+              <div class="form-group" [hidden]="product.color[0]==null">
+                <label class="text-muted">Select Color:</label>
+                <div>
+                    <label class="js-check btn btn-check active mr-1" *ngFor="let ob of product.color; let k = index">
+                        <mat-radio-button name="color" (click)="selectColor(ob)" style="color: black;" >{{ob}}</mat-radio-button>
+                    </label>	
+                </div>						
+            </div>
+
+              <div class="mb-3" [hidden]="selectedPrice==0">
+                <var class="price h4">Total Cost: ৳{{selectedPrice*selectedQuantity}}</var> <br>
+                <span style="color: black;">Including Discount</span>
+              </div> <!-- price-detail-wrap .// -->
+
+              <div class="mb-4">
+                <a (click)="purchase()" class="btn btn-primary mr-1" [hidden]="!(this.userCartProduct.variationId!=null&&selectedQuantity!=0)">Buy now</a>
+                <a (click)="addToCart()" class="btn btn-warning mr-1" [hidden]="!(this.userCartProduct.variationId!=null&&selectedQuantity!=0)">Add to card</a>
+                <a (click)="close()" class="btn btn-danger">Not Now</a>
+              </div>
+
+            </article> <!-- product-info-aside .// -->
+          </main> <!-- col.// -->
+        </div> <!-- row.// -->
+      </div> <!-- card-body.// -->
+    </article>
+  </div>
+
+
+</section>

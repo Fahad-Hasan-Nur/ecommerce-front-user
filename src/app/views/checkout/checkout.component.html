@@ -15,16 +15,16 @@
         <div class="card-body">
             <h4 class="card-title mb-4">Review cart</h4>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" *ngFor="let element of data; let i = index">
                     <figure class="itemside  mb-4">
-                        <div class="aside"><img src="assets/images/items/1.jpg" class="border img-sm"></div>
+                        <div class="aside"><img [src]="element.image" class="border img-sm"></div>
                         <figcaption class="info">
-                            <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                            <span class="text-muted">2x = $560 </span>
+                            <p>{{element.productName}}</p>
+                            <span class="text-muted">{{element.quantity}}x = ৳{{element.totalCost}} </span>
                         </figcaption>
                     </figure>
-                </div> <!-- col.// -->
-                <div class="col-md-6">
+                </div> 
+                <!-- <div class="col-md-6">
                     <figure class="itemside  mb-4">
                         <div class="aside"><img src="assets/images/items/2.jpg" class="border img-sm"></div>
                         <figcaption class="info">
@@ -32,7 +32,7 @@
                             <span class="text-muted">2x = $560 </span>
                         </figcaption>
                     </figure>
-                </div> <!-- col.// -->
+                </div> 
                 <div class="col-md-6">
                     <figure class="itemside mb-4">
                         <div class="aside"><img src="assets/images/items/3.jpg" class="border img-sm"></div>
@@ -41,7 +41,7 @@
                             <span class="text-muted">2x = $560 </span>
                         </figcaption>
                     </figure>
-                </div> <!-- col.// -->
+                </div> 
                 <div class="col-md-6">
                     <figure class="itemside  mb-4">
                         <div class="aside"><img src="assets/images/items/4.jpg" class="border img-sm"></div>
@@ -50,7 +50,7 @@
                             <span class="text-muted">2x = $560 </span>
                         </figcaption>
                     </figure>
-                </div> <!-- col.// -->
+                </div>  -->
             </div> <!-- row.// -->
         </div> <!-- card-body.// -->
         </article> <!-- card.// -->
@@ -88,18 +88,11 @@
             <h4 class="card-title mb-4">Delivery info</h4>
             <form action="">
                 <div class="row">
-                    <div class="form-group col-sm-6">
+                    <div class="form-group col-sm-12">
                         <label class="js-check box active">
                             <input type="radio" name="dostavka" value="option1" checked="">
                             <h6 class="title">Delivery</h6>
                             <p class="text-muted">We will deliver by DHL Kargo</p>
-                        </label> <!-- js-check.// -->
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label class="js-check box">
-                            <input type="radio" name="dostavka" value="option1">
-                            <h6 class="title">Pick-up</h6>
-                            <p class="text-muted">Come to our office to somewhere </p>
                         </label> <!-- js-check.// -->
                     </div>
                 </div> <!-- row.// -->
@@ -147,21 +140,20 @@
         <article class="accordion" id="accordion_pay">
             <div class="card">
                 <header class="card-header">
-                    <img src="assets/images/misc/payment-paypal.png" class="float-right" height="24"> 
+                    <img src="assets/images/misc/cash-on-delivery.png" class="float-right" height="24"> 
                     <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
                         <input class="form-check-input" name="payment-option" checked="" type="radio" value="option2">
                         <h6 class="form-check-label"> 
-                            Paypal 
+                            Cash On Delivary 
                         </h6>
                     </label>
                 </header>
                 <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
                 <div class="card-body">
-                    <p class="text-center text-muted">Connect your PayPal account and use it to pay your bills. You'll be redirected to PayPal to add your billing information.</p>
-                    <p class="text-center">
-                        <a href="#"><img src="assets/images/misc/btn-paypal.png" height="32"></a>
-                        <br><br>
-                    </p>
+                    <p class="text-muted">Some instructions about how to pay </p>
+                    <p>
+                        You can pay to our delivary man after getting product in hand. <br>
+                    </p>    
                 </div> <!-- card body .// -->
                 </div> <!-- collapse .// -->
             </div> <!-- card.// -->
@@ -213,7 +205,7 @@
                         <h4 class="mb-3">Overview</h4>
                         <dl class="dlist-align">
                             <dt class="text-muted">Delivery:</dt>
-                            <dd>Pick-up</dd>
+                            <dd>Home Delivary</dd>
                           </dl>
                         <dl class="dlist-align">
                           <dt class="text-muted">Delivery type:</dt>
@@ -226,11 +218,11 @@
                         <hr>
                         <dl class="dlist-align">
                           <dt>Total:</dt>
-                          <dd class="h5">$300.50</dd>
+                          <dd class="h5">৳{{totalCost}}</dd>
                         </dl>
                         <hr>
                         <p class="small mb-3 text-muted">By clicking you are agree with terms of condition </p>
-                        <a href="#" class="btn btn-primary btn-block"> Button  </a>
+                        <a href="#" class="btn btn-primary btn-block"> Submit  </a>
                         
                     </div> <!-- card-body.// -->
                     </div> <!-- card.// -->

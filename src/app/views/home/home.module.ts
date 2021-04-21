@@ -12,11 +12,13 @@ import { Rating } from 'src/app/common/model/rating';
 import { ProductViewComponent } from './component/product-view/product-view.component';
 import { HomeViewComponent } from './component/home-view/home-view.component';
 import { Product } from 'src/app/common/model/product';
+import { MakeOrderComponent } from './component/make-order/make-order.component';
+import { UserCartProduct } from 'src/app/common/model/user-cart-product';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, RatingComponent, ProductViewComponent, HomeViewComponent],
+  declarations: [HomeComponent, RatingComponent, ProductViewComponent, HomeViewComponent, MakeOrderComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -26,8 +28,8 @@ import { Product } from 'src/app/common/model/product';
     AngularMaterialModule,
     ReactiveFormsModule,
   ],
-  providers:[Category,Rating,Product],
-  entryComponents:[RatingComponent]
+  providers:[Category,Rating,Product,UserCartProduct],
+  entryComponents:[RatingComponent,MakeOrderComponent]
 })
 export class HomeModule { 
 }

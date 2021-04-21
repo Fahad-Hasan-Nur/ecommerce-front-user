@@ -104,14 +104,14 @@
         <article class="card card-product-list" *ngFor="let element of product; let i = index">
           <div class="row no-gutters">
             <aside class="col-md-3">
-              <a href="#" class="img-wrap">
+              <a  (click)="viewProduct(element)" class="img-wrap">
                 <span class="badge badge-danger"> NEW </span>
                 <img [src]="element.image">
               </a>
             </aside> <!-- col.// -->
             <div class="col-md-6">
               <div class="info-main">
-                <a href="#" class="h5 title"> {{element.name}}</a>
+                <a  (click)="viewProduct(element)" class="h5 title"> {{element.name}}</a>
                 <h1 class="text-primary">
                 </h1>
                 <div class="rating-wrap mb-3" (click)="rating(element.id)">
@@ -140,8 +140,8 @@
                 <br>
                 <p>
                   <a (click)="viewProduct(element)" class="btn btn-primary btn-block"> Details </a>
-                  <a href="#" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
-                    <span class="text">Add to wishlist</span>
+                  <a (click)="addTocart(element)" class="btn btn-light btn-block"><i class="fa fa-heart"></i>
+                    <span class="text">Add to Cart</span>
                   </a>
                 </p>
               </div> <!-- info-aside.// -->
