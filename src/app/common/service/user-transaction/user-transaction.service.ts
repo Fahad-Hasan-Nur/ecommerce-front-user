@@ -41,6 +41,17 @@ export class UserTransactionService {
    public getCartProduct(id): Observable<any>{
     return this._http.get(USER_API.GET_CART_PRODUCT+id,{ headers: this.reqHeader });
   }
+
+
+    /**
+   * Returns list of userCartProduct.
+   *
+   * @returns userCartProduct list by order id
+   */
+     public getProductByOrder(id): Observable<any>{
+      return this._http.get(USER_API.GET_PRODUCT_BY_ORDER+id,{ headers: this.reqHeader });
+    }
+
   /**
    * Returns  Delete userCartProduct.
    *
@@ -48,6 +59,16 @@ export class UserTransactionService {
    */
    public deleteUserCartProductById(id:string): Observable<any> {
     return this._http.delete(USER_API.DELETE_CART_PRODUCT+id ,{ headers: this.reqHeader });
+}
+
+/**
+   * Update a  userCartProduct.
+   *
+   * @param userCartProduct
+   * @returns userCartProduct
+   */
+ public orderUserProduct(ob:UserCartProduct): Observable<any>{
+  return this._http.put(USER_API.ORDER_USER_PRODUCT,ob,{ headers: this.reqHeader });
 }
 //   /**
 //    * create list of variation.

@@ -23,7 +23,9 @@ export const success_message = {
   LOGIN_SUCCES: "Logged in Successfully.",
   LOGIN_FAIL: "Failed to log in.",
   ERROR_RATING:'You must log in to rate Products.',
-  COUPON_ERROR:'Coupon is  expired.'
+  COUPON_ERROR:'Coupon is  expired.',
+  ORDER_SUCCES:'Order made successfully.',
+  ORDER_ERROR:'Something went wrong try again....',
 };
 
 export const error_message = {

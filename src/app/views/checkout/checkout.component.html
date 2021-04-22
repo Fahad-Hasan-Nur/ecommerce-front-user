@@ -1,238 +1,234 @@
+<section class="section-content padding-y bg">
+  <div class="container">
 
-    
-    
-    
-    <section class="section-content padding-y bg">
-        <div class="container">
-        
-        
-        
-        <!-- ============================ COMPONENT 2 ================================= -->
-        <div class="row">
-                <main class="col-md-8">
-        
+    <!-- ============================ COMPONENT 2 ================================= -->
+    <div class="row">
+      <main class="col-md-8">
+
         <article class="card mb-4">
-        <div class="card-body">
+          <div class="card-body">
             <h4 class="card-title mb-4">Review cart</h4>
             <div class="row">
-                <div class="col-md-6" *ngFor="let element of data; let i = index">
-                    <figure class="itemside  mb-4">
-                        <div class="aside"><img [src]="element.image" class="border img-sm"></div>
-                        <figcaption class="info">
-                            <p>{{element.productName}}</p>
-                            <span class="text-muted">{{element.quantity}}x = ৳{{element.totalCost}} </span>
-                        </figcaption>
-                    </figure>
-                </div> 
-                <!-- <div class="col-md-6">
-                    <figure class="itemside  mb-4">
-                        <div class="aside"><img src="assets/images/items/2.jpg" class="border img-sm"></div>
-                        <figcaption class="info">
-                            <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                            <span class="text-muted">2x = $560 </span>
-                        </figcaption>
-                    </figure>
-                </div> 
-                <div class="col-md-6">
-                    <figure class="itemside mb-4">
-                        <div class="aside"><img src="assets/images/items/3.jpg" class="border img-sm"></div>
-                        <figcaption class="info">
-                            <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                            <span class="text-muted">2x = $560 </span>
-                        </figcaption>
-                    </figure>
-                </div> 
-                <div class="col-md-6">
-                    <figure class="itemside  mb-4">
-                        <div class="aside"><img src="assets/images/items/4.jpg" class="border img-sm"></div>
-                        <figcaption class="info">
-                            <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                            <span class="text-muted">2x = $560 </span>
-                        </figcaption>
-                    </figure>
-                </div>  -->
+              <div class="col-md-6" *ngFor="let element of data; let i = index">
+                <figure class="itemside  mb-4">
+                  <div class="aside"><img [src]="element.image" class="border img-sm"></div>
+                  <figcaption class="info">
+                    <p>{{element.productName}}</p>
+                    <span class="text-muted">{{element.quantity}}x = ৳{{element.totalCost}} </span>
+                  </figcaption>
+                </figure>
+              </div>
             </div> <!-- row.// -->
-        </div> <!-- card-body.// -->
+          </div> <!-- card-body.// -->
         </article> <!-- card.// -->
-        
-        
+
+
         <article class="card mb-4">
-        <div class="card-body">
+          <div class="card-body">
             <h4 class="card-title mb-4">Contact info</h4>
-            <form action="">
-                <div class="row">
-                    <div class="form-group col-sm-6">
-                        <label>Frst name</label>
-                        <input type="text" placeholder="Type here" class="form-control">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label>Last name</label>
-                        <input type="text" placeholder="Type here" class="form-control">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label>Phone</label>
-                        <input type="text" value="+998" class="form-control">
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label>Email</label>
-                        <input type="email" placeholder="example@gmail.com" class="form-control">
-                    </div>
-                </div> <!-- row.// -->	
+            <form #cInfoNgModel='ngForm'>
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label>Frst name*</label>
+                  <input type="text" placeholder="Type here" class="form-control" #firstName="ngModel" name="firstName"
+                  [(ngModel)]="cInfo.firstName" required>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Last name*</label>
+                  <input type="text" placeholder="Type here" class="form-control" #lastName="ngModel" name="lastName"
+                  [(ngModel)]="cInfo.lastName" required>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Phone*</label>
+                  <input type="number" value="+998" class="form-control" #phoneNumber="ngModel" name="phoneNumber"
+                  [(ngModel)]="cInfo.phoneNumber" required>
+                </div>
+                <div class="form-group col-sm-6">
+                  <label>Email*</label>
+                  <input type="email" email placeholder="example@gmail.com" class="form-control"  #email="ngModel" name="email"
+                  [(ngModel)]="cInfo.email" required>
+                </div>
+              </div> <!-- row.// -->
             </form>
-        </div> <!-- card-body.// -->
+          </div> <!-- card-body.// -->
         </article> <!-- card.// -->
-        
-        
+
+
         <article class="card mb-4">
-        <div class="card-body">
+          <div class="card-body">
             <h4 class="card-title mb-4">Delivery info</h4>
-            <form action="">
-                <div class="row">
-                    <div class="form-group col-sm-12">
-                        <label class="js-check box active">
-                            <input type="radio" name="dostavka" value="option1" checked="">
-                            <h6 class="title">Delivery</h6>
-                            <p class="text-muted">We will deliver by DHL Kargo</p>
-                        </label> <!-- js-check.// -->
-                    </div>
-                </div> <!-- row.// -->
-                    
-        
-                <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label>City*</label>
-                            <select name="" class="form-control">
-                                <option value="">Tashkent</option>
-                                <option value="">Buxoro</option>
-                                <option value="">Samarqand</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label>Area*</label>
-                            <input type="text" placeholder="Type here" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-8">
-                            <label>Street*</label>
-                            <input type="text" placeholder="Type here" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <label>Building</label>
-                            <input type="text" placeholder="" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <label>House</label>
-                            <input type="text" placeholder="Type here" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <label>Postal code</label>
-                            <input type="text" placeholder="" class="form-control">
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <label>Zip</label>
-                            <input type="text" placeholder="" class="form-control">
-                        </div>
-                </div> <!-- row.// -->	
+            <form #lInfoNgModel='ngForm'>
+              <div class="row">
+                <div class="form-group col-sm-12">
+                  <label class="js-check box active">
+                    <input type="radio" name="dostavka" value="option1" checked="">
+                    <h6 class="title">Delivery</h6>
+                    <p class="text-muted">We will deliver by DHL Kargo</p>
+                  </label> <!-- js-check.// -->
+                </div>
+              </div> <!-- row.// -->
+
+
+              <div class="row">
+                <div class="form-group col-sm-6">
+                    <label>City*</label>
+                    <input type="text" placeholder="Type here" class="form-control" #city="ngModel" name="city"
+                    [(ngModel)]="lInfo.city" required>
+                  </div>
+                <div class="form-group col-sm-6">
+                  <label>Area*</label>
+                  <input type="text" placeholder="Type here" class="form-control" #area="ngModel" name="area"
+                  [(ngModel)]="lInfo.area" required>
+                </div>
+                <div class="form-group col-sm-8">
+                  <label>Street*</label>
+                  <input type="text" placeholder="Type here" class="form-control" #street="ngModel" name="street"
+                  [(ngModel)]="lInfo.street" required>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label>Building</label>
+                  <input type="text" placeholder="" class="form-control" #building="ngModel" name="building"
+                  [(ngModel)]="lInfo.building" >
+                </div>
+                <div class="form-group col-sm-4">
+                  <label>House</label>
+                  <input type="text" placeholder="Type here" class="form-control" #house="ngModel" name="house"
+                  [(ngModel)]="lInfo.house" >
+                </div>
+                <div class="form-group col-sm-4">
+                  <label>Postal code*</label>
+                  <input type="text" placeholder="" class="form-control" #postalCode="ngModel" name="postalCode"
+                  [(ngModel)]="lInfo.postalCode" required>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label>Zip</label>
+                  <input type="text" placeholder="" class="form-control" #zip="ngModel" name="zip"
+                  [(ngModel)]="lInfo.zip">
+                </div>
+              </div> <!-- row.// -->
             </form>
-        </div> <!-- card-body.// -->
+          </div> <!-- card-body.// -->
         </article> <!-- card.// -->
-        
-        
+
+
         <article class="accordion" id="accordion_pay">
-            <div class="card">
-                <header class="card-header">
-                    <img src="assets/images/misc/cash-on-delivery.png" class="float-right" height="24"> 
-                    <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
-                        <input class="form-check-input" name="payment-option" checked="" type="radio" value="option2">
-                        <h6 class="form-check-label"> 
-                            Cash On Delivary 
-                        </h6>
-                    </label>
-                </header>
-                <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
-                <div class="card-body">
-                    <p class="text-muted">Some instructions about how to pay </p>
-                    <p>
-                        You can pay to our delivary man after getting product in hand. <br>
-                    </p>    
-                </div> <!-- card body .// -->
-                </div> <!-- collapse .// -->
-            </div> <!-- card.// -->
-            <div class="card">
+          <div class="card">
             <header class="card-header">
-                <img src="assets/images/misc/payment-card.png" class="float-right" height="24">  
-                <label class="form-check" data-toggle="collapse" data-target="#pay_payme">
-                    <input class="form-check-input" name="payment-option" type="radio" value="option2">
-                    <h6 class="form-check-label"> Credit Card  </h6>
-                </label>
+              <img src="assets/images/misc/cash-on-delivery.png" class="float-right" height="24">
+              <label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
+                <input class="form-check-input" name="payment-option" checked="" type="radio" value="option2">
+                <h6 class="form-check-label">
+                  Cash On Delivary
+                </h6>
+              </label>
+            </header>
+            <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
+              <div class="card-body">
+                <p>
+                  You can pay to our delivary man after getting product in hand. <br>
+                </p>
+              </div> <!-- card body .// -->
+            </div> <!-- collapse .// -->
+          </div> <!-- card.// -->
+          <div class="card">
+            <header class="card-header">
+              <img src="assets/images/misc/payment-card.png" class="float-right" height="24">
+              <label class="form-check" data-toggle="collapse" data-target="#pay_payme">
+                <input class="form-check-input" name="payment-option" type="radio" value="" >
+                <h6 class="form-check-label"> Credit Card </h6>
+              </label>
             </header>
             <div id="pay_payme" class="collapse" data-parent="#accordion_pay">
-                <div class="card-body">
-                    <p class="alert alert-success">Some information or instruction</p>
-                    <form class="form-inline">
-                        <input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx" name="">
-                        <input type="text" class="form-control mr-2" style="width: 100px" placeholder="dd/yy" name="">
-                        <input type="number" maxlength="3" class="form-control mr-2" style="width: 100px" placeholder="cvc" name="">
-                        <button class="btn btn btn-success">Button</button>
-                    </form>
-                </div> <!-- card body .// -->
+              <div class="card-body">
+                <p class="alert alert-danger">Credit Card Payment will be Available Soon.</p>
+              </div> <!-- card body .// -->
             </div> <!-- collapse .// -->
-            </div> <!-- card.// -->
-            <div class="card">
-                <header class="card-header">
-                    <img src="assets/images/misc/payment-bank.png" class="float-right" height="24">  
-                    <label class="form-check" data-toggle="collapse" data-target="#pay_card">
-                        <input class="form-check-input" name="payment-option" type="radio" value="option1">
-                        <h6 class="form-check-label"> Bank Transfer </h6>
-                    </label>
-                </header>
-                <div id="pay_card" class="collapse" data-parent="#accordion_pay">
-                    <div class="card-body">
-                        <p class="text-muted">Some instructions about how to pay </p>
-                        <p>
-                            Bank of America, Account number: 12345678912346 <br>
-                            IBAN: 12345, SWIFT: 987654
-                        </p>
-                    </div> <!-- card body .// -->
-                </div> <!-- collapse .// -->
-            </div> <!-- card.// -->
-        </article> 
+          </div> <!-- card.// -->
+          <div class="card">
+            <header class="card-header">
+              <img src="assets/images/misc/payment-bank.png" class="float-right" height="24">
+              <label class="form-check" data-toggle="collapse" data-target="#pay_card">
+                <input class="form-check-input" name="payment-option" type="radio" value="option1" >
+                <h6 class="form-check-label"> Bank Transfer </h6>
+              </label>
+            </header>
+            <div id="pay_card" class="collapse" data-parent="#accordion_pay">
+              <div class="card-body">
+                <p class="alert alert-danger">Bank Transfer will be Available Soon.</p>
+
+              </div> <!-- card body .// -->
+            </div> <!-- collapse .// -->
+          </div> <!-- card.// -->
+          <div class="card">
+            <header class="card-header">
+              <img src="assets/images/misc/payment-card.png" class="float-right" height="24">
+              <label class="form-check" data-toggle="collapse" data-target="#asas">
+                <input class="form-check-input" name="payment-option" type="radio" value="" >
+                <h6 class="form-check-label"> Net Banking </h6>
+              </label>
+            </header>
+            <div id="asas" class="collapse" data-parent="#accordion_pay">
+              <div class="card-body">
+                <p class="alert alert-success">Please enter below Details:</p>
+                <p class="text-muted">
+                    Our Agent number is : 01817232323. <br>
+                  </p>
+                <form class="form-inline" #netNgModel='ngForm' >
+                        <select name="" class="form-control mr-2" style="min-width: 100px;" #name="ngModel" name="name"
+                        [(ngModel)]="nBank.name" [disabled]="edit" required >
+                            <option value="Bkash" >Bkash</option>
+                            <option value="Rocket">Rocket</option>
+                            <option value="Nogod">Nogod</option>
+                        </select>
+                  <input type="text" class="form-control mr-2" style="min-width: 100px;" placeholder="Enter A/C Number" name="" #accountNong="ngModel" name="accountNong" [(ngModel)]="nBank.accountNong" [readonly]="edit" required>
+                  <input type="text"  class="form-control mr-2" style="min-width: 100px;" placeholder="Enter Transaction Id" name="" #transactionId="ngModel" name="transactionId"[(ngModel)]="nBank.transactionId" [readonly]="edit" required>
+                  <button class="btn btn btn-success" [hidden]="edit" (click)="netBankDetail()" [disabled]="!netNgModel.valid">Submit</button>
+                  <button class="btn btn btn-info" [hidden]="!edit" (click)="editData()">Change</button>
+                </form>
+              </div> <!-- card body .// -->
+            </div> <!-- collapse .// -->
+          </div> <!-- card.// -->
+        </article>
         <!-- accordion end.// -->
-          
-                </main> <!-- col.// -->
-                <aside class="col-md-4">
-                    <div class="card shadow">
-                    <div class="card-body">
-                        <h4 class="mb-3">Overview</h4>
-                        <dl class="dlist-align">
-                            <dt class="text-muted">Delivery:</dt>
-                            <dd>Home Delivary</dd>
-                          </dl>
-                        <dl class="dlist-align">
-                          <dt class="text-muted">Delivery type:</dt>
-                          <dd>Standart</dd>
-                        </dl>
-                        <dl class="dlist-align">
-                          <dt class="text-muted">Payment method:</dt>
-                          <dd>Cash</dd>
-                        </dl>
-                        <hr>
-                        <dl class="dlist-align">
-                          <dt>Total:</dt>
-                          <dd class="h5">৳{{totalCost}}</dd>
-                        </dl>
-                        <hr>
-                        <p class="small mb-3 text-muted">By clicking you are agree with terms of condition </p>
-                        <a href="#" class="btn btn-primary btn-block"> Submit  </a>
-                        
-                    </div> <!-- card-body.// -->
-                    </div> <!-- card.// -->
-                </aside> <!-- col.// -->
-            </div> <!-- row.// -->
-        
-        <!-- ============================ COMPONENT 2 END//  ================================= -->
-        
-        
-        
-        
-        </div> <!-- container .//  -->
-        </section>
+
+      </main> <!-- col.// -->
+      <aside class="col-md-4">
+        <div class="card shadow">
+          <div class="card-body">
+            <h4 class="mb-3">Overview</h4>
+            <dl class="dlist-align">
+              <dt class="text-muted">Delivery:</dt>
+              <dd>Home Delivary</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt class="text-muted">Delivery type:</dt>
+              <dd>Standart</dd>
+            </dl>
+            <dl class="dlist-align">
+              <dt class="text-muted">Payment method:</dt>
+              <dd>{{paymentMethod}}</dd>
+            </dl>
+            <hr>
+            <dl class="dlist-align">
+              <dt>Total:</dt>
+              <dd class="h5">৳{{totalCost}}</dd>
+            </dl>
+            <hr>
+            <p class="small mb-3 text-muted">By clicking you are agree with terms of condition </p>
+            <button (click)="submit()" class="btn btn-primary btn-block" [disabled]="!(cInfoNgModel.valid &&lInfoNgModel.valid)"> Complete Order </button>
+        </div> <!-- card-body.// -->
+        </div> <!-- card.// -->
+      </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+
+    <!-- ============================ COMPONENT 2 END//  ================================= -->
+
+
+
+
+  </div> <!-- container .//  -->
+</section>
+<div class="overlay"
+    [hidden]="!loading">
+    <img src="assets/images/gif/loader_colored.gif" class="spinner" style="height: 200px; width: 200px">
+  </div>

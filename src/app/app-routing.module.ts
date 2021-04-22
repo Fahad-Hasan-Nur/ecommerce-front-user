@@ -39,6 +39,11 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
         loadChildren: () => import('./views/cart/cart.module').then(m => m.CartModule)
       },
+      {
+        path: URL_NAME.ORDER,
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule)
+      },
     ],
   },
  

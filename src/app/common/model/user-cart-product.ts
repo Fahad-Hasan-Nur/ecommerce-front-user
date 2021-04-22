@@ -19,4 +19,5 @@ export class UserCartProduct {
   public variation?:Variation;
   public brandName?:string;
   public image?:any;
+  public orderId?:string;
 }
