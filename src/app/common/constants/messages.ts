@@ -12,6 +12,7 @@ export const success_message = {
   ADDED_SUCCESSFULLY: 'Added Successfully',
   SAVED_SUCCESSFULLY: 'Saved Successfully',
   MAIL:'Check your mail to Activate Account...',
+  NO_DATA:'Sorry..No product on cart..!!!',
   FAILD: 'Failed to Save',
   UPDATED_SUCCESSFULLY: 'Updated Successfully',
   DELETED_SUCCESSFULLY: 'Deleted Successfully',

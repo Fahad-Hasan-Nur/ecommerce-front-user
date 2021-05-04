@@ -3,7 +3,10 @@
   export const MENU_NAME = {
       HOME:'Home',
       CHECKOUT:'Checkout',
-      PRODUCTVIEW:'Product View'
+      PRODUCTVIEW:'Product View',
+      DEALERSHIP:'Dealership',
+      ABOUT:'About'
+
   };
   
   export const URL = {
@@ -11,7 +14,9 @@
     HOME:'/home',
     CART:'/cart',
     PRODUCT_VIEW:'/home/product-view',
-   ORDER:'/order'
+   ORDER:'/order',
+   DEALERSHIP:'/home/dealership',
+   ABOUT:'/home/about'
   
   };
   export const URL_NAME = {
@@ -19,7 +24,10 @@
     HOME:'home',
     CART:'cart',
     PRODUCTVIEW:'product-view',
-    ORDER:'order'
+    ORDER:'order',
+    DEALERSHIP:'dealership',
+    ABOUT:'about'
+
   };
   
   

@@ -1,3 +1,5 @@
+import { AboutComponent } from './component/about/about.component';
+import { DealershipComponent } from './component/dealership/dealership.component';
 import { HomeViewComponent } from './component/home-view/home-view.component';
 import { ProductViewComponent } from './component/product-view/product-view.component';
 import { HomeComponent } from './home.component';
@@ -21,6 +23,20 @@ const routes: Routes = [
       component:  ProductViewComponent,
       data: {
         title: MENU_NAME.PRODUCTVIEW
+      }
+    },
+    {
+      path:  URL_NAME.DEALERSHIP,
+      component:  DealershipComponent,
+      data: {
+        title: MENU_NAME.DEALERSHIP
+      }
+    },
+    {
+      path:  URL_NAME.ABOUT,
+      component:  AboutComponent,
+      data: {
+        title: MENU_NAME.ABOUT
       }
     }
     ],

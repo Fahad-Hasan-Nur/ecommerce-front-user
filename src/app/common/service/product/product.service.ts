@@ -1,3 +1,4 @@
+import { RECOMMENDATION_API } from './../../constants/api.constants';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -79,5 +80,23 @@ export class ProductService {
    public getVariationById(id): Observable<any>{
     return this._http.get(PRODUCT_API.GET_VARIATION_BY_ID+id,{ headers: this.reqHeader });
   }
+
+   /**
+   * Returns list of  recommended products for user.
+   *
+   * @returns Product list
+   */
+    public getUserBasedRecommendedProducts(id:string): Observable<any>{
+      return this._http.get(RECOMMENDATION_API.GET_USER_RECOMMENDED_PRODUCT+id ,{ headers: this.reqHeader });
+    }
+
+     /**
+   * Returns list of  recommended products by item.
+   *
+   * @returns Product list
+   */
+      public getItemBasedRecommendedProducts(id:string): Observable<any>{
+        return this._http.get(RECOMMENDATION_API.GET_ITEM_RECOMMENDED_PRODUCT+id);
+      }
 
 }

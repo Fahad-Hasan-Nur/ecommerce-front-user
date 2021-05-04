@@ -10,5 +10,6 @@ export class Brand {
     public imageName?: string ;
     public createdBy?: string;
     public updatedBy?: string;
+    public image?: any;
   }
   

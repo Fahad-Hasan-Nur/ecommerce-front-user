@@ -14,11 +14,13 @@ import { Product } from 'src/app/common/model/product';
 import { MakeOrderComponent } from './component/make-order/make-order.component';
 import { UserCartProduct } from 'src/app/common/model/user-cart-product';
 import { RatingComponent } from './component/rating/rating.component';
+import { DealershipComponent } from './component/dealership/dealership.component';
+import { AboutComponent } from './component/about/about.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, RatingComponent, ProductViewComponent, HomeViewComponent, MakeOrderComponent],
+  declarations: [HomeComponent, RatingComponent, ProductViewComponent, HomeViewComponent, MakeOrderComponent, DealershipComponent, AboutComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

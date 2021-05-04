@@ -20,7 +20,7 @@
       </aside> <!-- col.// -->
       <div class="col-md-9">
         <article class="banner-wrap">
-          <img src="assets/images/2.jpg" class="w-100 rounded">
+          <img src="assets/images/Screenshot 2021-05-03 at 9.18.31 PM.png" class="w-100 rounded">
         </article>
       </div> <!-- col.// -->
     </div> <!-- row.// -->
@@ -45,10 +45,18 @@
               </a>
             </header>
             <div class="filter-content collapse show" id="collapse_2" style="">
-              <div class="card-body" *ngFor="let element of brand; let i = index">
+              <div class="card-body" >
                 <div>
-                  <a (click)="getByBrand(element.id)" style="color: black;">{{element.name}}
-                  </a>
+                  <!-- <a (click)="getByBrand(element.id)" style="color: black;">{{element.name}}
+                  </a> -->
+                  <ul class="menu-category">
+                    <li  *ngFor="let element of brand; let i = index">
+                      <img (click)="getByBrand(element.id)" style="max-height: 40px;max-width: 40px;" [src]="element.image">
+                      <span>
+                      <a (click)="getByBrand(element.id)" style="float: right;">{{element.name}}</a>
+                    </span>
+                    </li>
+                  </ul>
                 </div>
               </div> <!-- card-body.// -->
             </div>
@@ -159,91 +167,34 @@
                 (click)="getPage(currentPage*5)">Next</a></li>
           </ul>
         </nav>
-        <section class="section-name padding-y-sm">
-            <div class="container">
+        <section class="section-name padding-y-sm" [hidden]="recommended[0]==null">
+          <div class="container">
   
-              <header class="section-heading">
-                <h3 class="section-title">Recommended For You</h3>
-              </header><!-- sect-heading -->
+            <header class="section-heading">
+              <h3 class="section-title">Recommended For You:</h3>
+            </header><!-- sect-heading -->
   
   
-              <div class="row">
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/1.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Just another product name</a>
-                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/2.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Some item name here</a>
-                      <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/3.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Great product name here</a>
-                      <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/4.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Just another product name</a>
-                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/5.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Just another product name</a>
-                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/6.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Some item name here</a>
-                      <div class="price mt-1">$280.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/7.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Great product name here</a>
-                      <div class="price mt-1">$56.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-                <div class="col-md-3">
-                  <div href="#" class="card card-product-grid">
-                    <a href="#" class="img-wrap"> <img src="assets/images/items/9.jpg"> </a>
-                    <figcaption class="info-wrap">
-                      <a href="#" class="title">Just another product name</a>
-                      <div class="price mt-1">$179.00</div> <!-- price-wrap.// -->
-                    </figcaption>
-                  </div>
-                </div> <!-- col.// -->
-              </div> <!-- row.// -->
+            <div class="row">
+              <div class="col-md-4" *ngFor="let element of recommended; let i = index">
+                <div href="#" class="card card-product-grid">
+                  <a href="#" class="img-wrap"> <img [src]="element.image"> </a>
+                  <figcaption class="info-wrap">
+                    <a href="#" class="title h5">{{element.name}}</a>
+                    <div class="price-wrap" *ngFor="let ob of element.variation; let k = index">
+                      <span> {{ob.name}} &nbsp; </span>
+                      <span class="price "> ৳{{ob.price-ob.price*ob.discount/100}}</span>
+                      <del class="price-old"> ৳{{ob.price}}</del>
+                    </div> <!-- info-price-detail // -->
+                  </figcaption>
+                </div>
+              </div> <!-- col.// -->
+              
+              
+            </div> <!-- row.// -->
   
-            </div><!-- container // -->
-          </section>
+          </div><!-- container // -->
+        </section>
 
       </main> <!-- col.// -->
 

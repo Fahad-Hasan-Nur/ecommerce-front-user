@@ -7,7 +7,7 @@
                     <aside class="col-md-6">
                             <article class="gallery-wrap">
                                 <div class="card img-big-wrap">
-                                    <a href="#"> <img [src]="product.image"></a>
+                                    <a> <img [src]="product.image"></a>
                                 </div> <!-- card img-big-wrap.// -->
                             </article> <!-- gallery-wrap .end// -->
                     </aside>
@@ -76,6 +76,37 @@
         </div> <!-- card-body.// -->
     </article>
     </div>
+    <section class="section-name padding-y-sm" [hidden]="products[0]==null">
+        <div class="container">
+
+          <header class="section-heading">
+            <h3 class="section-title">You May Alos Like:</h3>
+          </header><!-- sect-heading -->
+
+
+          <div class="row">
+            <div class="col-md-4" *ngFor="let element of products; let i = index">
+              <div (click)="viewProduct(element)" class="card card-product-grid">
+                <a  (click)="viewProduct(element)" class="img-wrap"> <img [src]="element.image"> </a>
+                <figcaption class="info-wrap">
+                  <a (click)="viewProduct(element)" class="title h5">{{element.name}}</a>
+                  <!-- <div class="price mt-1" *ngFor="let ob of products.variation; let i = index">{{ob.price}}</div>  -->
+                  <div class="price-wrap" *ngFor="let ob of element.variation; let k = index">
+                    <span> {{ob.name}} &nbsp; </span>
+                    <span class="price "> ৳{{ob.price-ob.price*ob.discount/100}}</span>
+                    <del class="price-old"> ৳{{ob.price}}</del>
+                    
+  
+                  </div> <!-- info-price-detail // -->
+                </figcaption>
+              </div>
+            </div> <!-- col.// -->
+            
+            
+          </div> <!-- row.// -->
+
+        </div><!-- container // -->
+      </section>
     
 
 </section>

@@ -1,6 +1,7 @@
-import { StateService } from './../../../../common/service/state/state.service';
+import { element } from 'protractor';
+import { AUTH } from './../../../../common/constants/global-variables.constant';
 
-import { Component, OnDestroy, OnInit, Output, ViewChild,EventEmitter  } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Category } from 'src/app/common/model/category';
 import { CategoryService } from 'src/app/common/service/product/category.service';
@@ -8,13 +9,9 @@ import { SubCategoryService } from 'src/app/common/service/product/sub-category.
 import { ImageService } from 'src/app/common/service/image/image.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { TitleCasePipe } from '@angular/common';
 import { success_message } from 'src/app/common/constants/messages';
 import { URL } from 'src/app/common/constants/nav.constants';
-import { AUTH } from 'src/app/common/constants/global-variables.constant';
 import { LoginComponent } from 'src/app/common/components/login/login.component';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { Brand } from 'src/app/common/model/brand';
 import { Product } from 'src/app/common/model/product';
 import { AdminService } from 'src/app/common/service/admin/admin.service';
@@ -23,7 +20,6 @@ import { ProductService } from 'src/app/common/service/product/product.service';
 import { StorageService } from 'src/app/common/service/storage/storage.service';
 import { ToastService } from 'src/app/common/service/toast/toast.service';
 import { RatingComponent } from '../rating/rating.component';
-import { Subscription } from 'rxjs';
 import { MakeOrderComponent } from '../make-order/make-order.component';
 
 @Component({
@@ -33,6 +29,7 @@ import { MakeOrderComponent } from '../make-order/make-order.component';
 })
 export class HomeViewComponent implements OnInit{
 
+  public recommended:Product[]=[];
   public totalProduct: number = 0;
   public category: Category[] = [];
   public brand: Brand[] = [];
@@ -72,6 +69,7 @@ export class HomeViewComponent implements OnInit{
     if (this.token != null) {
       this.activateUser(this.token);
     }
+    this.getRecommendedProduct();
   }
 
   private activateUser(token: string) {
@@ -104,6 +102,9 @@ export class HomeViewComponent implements OnInit{
       (
         (response) => {
           this.brand = response;
+          this.brand.forEach(element => {
+            element=this.getBrandImage(element);
+          });
         },
         (error) => console.log(error),
       );
@@ -148,6 +149,18 @@ export class HomeViewComponent implements OnInit{
         (error) => console.log(error),
       );
     return product;
+  }
+  getBrandImage(ob: Brand): Product {
+    this.imageService.getImageById(ob.imageId).subscribe
+      (
+        (response) => {
+          this.retrieveResonse = response;
+          this.base64Data = this.retrieveResonse.picByte;
+          ob.image = 'data:image/jpeg;base64,' + this.base64Data;
+        },
+        (error) => console.log(error),
+      );
+    return ob;
   }
 
   getVariation(product: Product): Product {
@@ -255,7 +268,6 @@ export class HomeViewComponent implements OnInit{
   }
   getPage(data:any){
     this.currentPage=Math.round(data/5)+1;
-    console.log(this.currentPage)
     this.product=[];
     for (let i = 0; i < 5; i++) {
       if(this.productContainer[data+i]==null){
@@ -281,6 +293,19 @@ export class HomeViewComponent implements OnInit{
         id: data
       };
       this.dialog.open(MakeOrderComponent, dialogConfig);
+    }
+  }
+
+  getRecommendedProduct(){
+    if(this.adminService.usersStorage()!=null){
+      this.productService.getUserBasedRecommendedProducts(this.adminService.usersStorage().id).subscribe
+      (
+        (response) => {
+          this.recommended = response;
+          console.log(this.recommended)
+        },
+        (error) => console.log(error),
+      );
     }
   }
 }

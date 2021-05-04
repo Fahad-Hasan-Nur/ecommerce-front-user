@@ -41,7 +41,7 @@ export class MakeOrderComponent implements OnInit {
     this.dialogRef.close();
   }
   purchase(){
-    this.checkout==true;
+    this.checkout=true;
     this.addToCart();
   }
   addToCart(){
@@ -57,10 +57,11 @@ export class MakeOrderComponent implements OnInit {
       this.service.addUserCartProduct(this.userCartProduct).subscribe
       (
         (response) => {
-          this.checkout=true;
-          console.log(response)
           this.toastService.openSnackBar(success_message.CREATED_SUCCESSFULLY, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-          if(this.checkout==true){
+          if(this.checkout){
+            this.dialogRef.close();
+            this.router.navigateByUrl(URL.CHECKOUT);
+          }else{
             this.dialogRef.close();
             this.router.navigateByUrl(URL.CART);
           }

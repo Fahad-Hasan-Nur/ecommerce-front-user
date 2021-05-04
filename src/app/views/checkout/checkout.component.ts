@@ -1,3 +1,7 @@
+import { AUTH } from './../../common/constants/global-variables.constant';
+import { StorageService } from './../../common/service/storage/storage.service';
+import { URL } from 'src/app/common/constants/nav.constants';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderService } from './../../common/service/user-transaction/order.service';
 import { NetBanking } from './../../common/model/net-banking';
 import { UserOrder } from './../../common/model/user-order';
@@ -19,6 +23,7 @@ import { success_message } from 'src/app/common/constants/messages';
 })
 export class CheckoutComponent implements OnInit {
 
+  private token:string;
   public retrievedImage: any;
   public base64Data: any;
   public retrieveResonse: any;
@@ -40,13 +45,21 @@ export class CheckoutComponent implements OnInit {
     public lInfo: DelivaryLocationInfo,
     public userOrder: UserOrder,
     public nBank: NetBanking,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private route:ActivatedRoute,
+    private storage:StorageService,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
     this.getCartProduct();
     this.userOrder.paymentMethod = this.paymentMethod;
     this.userOrder.paymentInfo = this.paymentMethod;
+    this.token = this.route.snapshot.params.id;
+    if (this.token != null && this.token==this.storage.read(AUTH.TOKEN)) {
+      window.location.replace(window.location.href.replace(URL.CHECKOUT + '/'+ this.token, URL.HOME));
+    }
   }
 
   getCartProduct() {
@@ -90,12 +103,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   submit() {
-    this.loading = true;
-    this.userOrder.createdBy = this.adminService.usersStorage().id;
-    this.userOrder.userId = this.adminService.usersStorage().id;
-    this.userOrder.totalCost = this.totalCost;
-    this.userOrder.status = "PENDING";
-    this.saveDelivaryContactInfo();
+    if(this.data[0]==null){
+      this.toastService.openSnackBar(success_message.NO_DATA, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+    }else{
+      this.loading = true;
+      this.userOrder.createdBy = this.adminService.usersStorage().id;
+      this.userOrder.userId = this.adminService.usersStorage().id;
+      this.userOrder.totalCost = this.totalCost;
+      this.userOrder.status = "PENDING";
+      this.saveDelivaryContactInfo();
+    }
   }
 
   netBankDetail() {
@@ -177,5 +194,6 @@ export class CheckoutComponent implements OnInit {
         )
     });
       this.toastService.openSnackBar(success_message.ORDER_SUCCES, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
-  }
+      this.router.navigateByUrl(URL.ORDER);
+    }
 }

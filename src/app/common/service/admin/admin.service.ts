@@ -34,8 +34,17 @@ export class AdminService {
   */
   public getAdminInfo(email: any): Observable<any> {
     // @ts-ignore
-    console.log(this.storage.read(AUTH.TOKEN))
+
     return this._http.get(ADMIN_API.GET_ADMIN_BY_EMAIL + email, { headers: this.reqHeader });
+  }
+
+  public getAdmin(email: any,token:any): Observable<any> {
+    // @ts-ignore
+    const reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    return this._http.get(ADMIN_API.GET_ADMIN_BY_EMAIL + email, { headers: reqHeader });
   }
   // /**
   // * get admin info by admin id

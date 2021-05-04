@@ -29,6 +29,8 @@ export class CartComponent implements OnInit {
     private imageService:ImageService,
     public product:Product,
     private toastService:ToastService,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
@@ -94,8 +96,13 @@ export class CartComponent implements OnInit {
       }
     );  
     window.location.reload();  }
-  coupon(){
-    this.toastService.openSnackBar(success_message.COUPON_ERROR, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+
+  goToCheckout(){
+    if(this.data[0]==null){
+      this.toastService.openSnackBar(success_message.NO_DATA, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+    }else{
+      this.router.navigateByUrl(URL.CHECKOUT);
+    }
   }
 
 }

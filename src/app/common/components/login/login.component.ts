@@ -49,14 +49,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.stateService.getAuth()).subscribe(
       (res) => {
         this.storage.save(AUTH.TOKEN, res.jwt);
-        this.loading = false;
-        if(this.storage.read(AUTH.TOKEN)!=null){
-          console.log()
-          this.getUser();
-        }
-        else{
-          this.toastService.openSnackBar(success_message.LOGIN_FAIL, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
-        }
+        setTimeout(null, 1000);
+        this.getUser(res.jwt);
       },
       (err) => {
         console.log(err);
@@ -65,14 +59,15 @@ export class LoginComponent implements OnInit {
       });
 
   }
-  getUser() {
-    this.adminService.getAdminInfo(this.user.email).subscribe(
+  getUser(token?) {
+    this.adminService.getAdmin(this.user.email,token).subscribe(
       res => {
         this.user = res;
         this.stateService.setUser(this.user);
         this.storage.save(AUTH.CURRENT_USER, this.user);
         this.storage.save(AUTH.ROLES, this.user.role);
         this.toastService.openSnackBar(success_message.LOGIN_SUCCES, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
+       setTimeout(null,5000)
         window.location.replace(window.location.href.replace(URL.HOME, URL.HOME));
       },
       err => {

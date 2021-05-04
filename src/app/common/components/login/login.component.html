@@ -1,9 +1,6 @@
    
 <section id="content">
-  <div class="overlay"
-  [hidden]="!loading">
-  <img src="assets/images/gif/loader_colored.gif" class="spinner" style="height: 200px; width: 200px">
-  </div> 
+  
     <form #NgModel='ngForm' [hidden]="loading">
       
       <h1>Login Form</h1>
@@ -26,3 +23,7 @@
     </form>
    
   </section>
+  <div class="overlay"
+  [hidden]="!loading">
+  <img src="assets/images/gif/loader_colored.gif" class="spinner" style="height: 200px; width: 200px">
+  </div> 

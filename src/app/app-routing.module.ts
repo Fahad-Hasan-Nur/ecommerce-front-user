@@ -29,6 +29,11 @@ export const routes: Routes = [
         path: URL_NAME.HOME+'/:id',
         loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
       },
+      {
+        path: URL_NAME.CHECKOUT+'/:id',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./views/checkout/checkout.module').then(m => m.CheckoutModule)
+      },
        {
         path: URL_NAME.CHECKOUT,
         canActivate: [AuthGuard],
