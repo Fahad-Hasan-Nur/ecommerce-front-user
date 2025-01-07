@@ -167,6 +167,7 @@ export class CheckoutComponent implements OnInit {
           this.userOrder=response
           this.changeOderStatus(this.userOrder.id);
           console.log(response)
+        //  this.sendSms();
         },
         (err) => {
           this.toastService.openSnackBar(success_message.ORDER_ERROR, this.toastService.ACTION_SUCESS, this.toastService.CLASS_NAME_SUCESS);
@@ -175,6 +176,12 @@ export class CheckoutComponent implements OnInit {
         }
       )
   }
+
+  // sendSms(){
+  //   this.orderService.sendSMS().subscribe{
+
+  //   }
+  // }
 
   changeOderStatus(id:string) {
     this.data.forEach(ob => {

@@ -45,8 +45,9 @@ export class ProductViewComponent implements OnInit{
     console.log(this.product);
     this.getRecommendedProduct();
   }
+  
   select(data:number){
-    this.selectedPrice=data;
+    this.selectedPrice=Math.round(data);
   }
 
   rating(id: string) {

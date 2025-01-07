@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login() {
+    this.dialogRef.close();
     this.loading = true;
     this.loginService.login(this.stateService.getAuth()).subscribe(
       (res) => {

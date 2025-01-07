@@ -17,6 +17,7 @@ export class OrderService {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.storage.read(AUTH.TOKEN)
     });
+   
 
     constructor(private _http: HttpClient,
         private storage: StorageService

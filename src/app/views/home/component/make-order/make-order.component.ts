@@ -22,6 +22,7 @@ export class MakeOrderComponent implements OnInit {
   public avaibaleQuantity:number=0;
   public selectedQuantity:number=0;
   private checkout:boolean=false;
+  private check: boolean=false;
   
   constructor(private dialogRef: MatDialogRef<MakeOrderComponent>,
     private router: Router,
@@ -35,8 +36,19 @@ export class MakeOrderComponent implements OnInit {
     this.product = data.id;
   }
   ngOnInit() {
+    this.checkQuantity();
   }
 
+  checkQuantity(){
+    this.product.variation.forEach(element => {
+      if(element.quantity==0){
+        this.check=true;
+      }
+      if(this.check==true){
+        this.toastService.openSnackBar(success_message.OUT_OF_STOCK, this.toastService.ACTION_WRONG, this.toastService.CLASS_NAME_WRONG);
+      }
+    });
+  }
   close(){
     this.dialogRef.close();
   }
@@ -74,7 +86,7 @@ export class MakeOrderComponent implements OnInit {
   }
   selectVariation(ob:Variation){
     this.userCartProduct.variationId=ob.id;
-    this.selectedPrice=ob.price-ob.price*ob.discount/100;
+    this.selectedPrice=Math.round(ob.price-ob.price*ob.discount/100);
     this.avaibaleQuantity=ob.quantity;
   }
   selectColor(color:string){

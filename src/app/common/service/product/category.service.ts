@@ -24,6 +24,12 @@ constructor(private _http: HttpClient) { }
   public getCategory(): Observable<any>{
     return this._http.get(CATEGORY_API.GET_CATEGORY);
   }
+
+
+
+  public getCategoryList(): Observable<any>{
+    return this._http.get(CATEGORY_API.GET_CATEGORY_LIST);
+  }
 //   /**
 //    * create a new category.
 //    *

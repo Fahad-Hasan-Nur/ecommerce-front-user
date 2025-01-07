@@ -309,4 +309,3 @@ export class HomeViewComponent implements OnInit{
     }
   }
 }
-

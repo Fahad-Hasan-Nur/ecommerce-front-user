@@ -27,6 +27,7 @@ export const success_message = {
   COUPON_ERROR:'Coupon is  expired.',
   ORDER_SUCCES:'Order made successfully.',
   ORDER_ERROR:'Something went wrong try again....',
+  OUT_OF_STOCK:'Sorry Product is out of Stock'
 };
 
 export const error_message = {

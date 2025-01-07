@@ -49,6 +49,14 @@ export class ProductService {
 }
 
 /**
+   * get list of  product by  category id .
+   *
+   */
+ public getProductByCategoryId(data): Observable<Product[]> {
+  return this._http.get<Product[]>(PRODUCT_API.GET_PRODUCT_BY_CATEGORY_ID + data);
+}
+
+/**
    * get list of  product by brand id .
    *
    */
